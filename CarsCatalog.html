@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог</title>
+    <title data-lang="title_catalog">Каталог автомобілів</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="./style.css" rel="stylesheet" />
 </head>
 <body>
@@ -13,57 +12,158 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-auto">
-                    <img src="" alt="img" class="header-top-logo">
+                    <img src="pics/sideways_cars_logo.png" alt="img" class="header-top-logo">
                 </div>
                 <div class="col">
-                    <nav class="nav d-flex gap-3">
-                        <a href="/index.html" class="nav-link">
-                            <img src="pics/homepage.png" alt="">Головна
+                    <nav class="nav d-flex gap-3 align-items-center flex-wrap">
+                        <a href="./index.html" class="nav-link">
+                            <img src="pics/homepage.png" alt=""><span data-lang="nav_home">Головна</span>
                         </a>
-                        <a href="/CarsCatalog.html" class="nav-link">
-                            <img src="pics/catalog.png" alt="">Каталог
+                        <a href="./CarsCatalog.html" class="nav-link">
+                            <img src="pics/catalog.jpg" alt=""><span data-lang="nav_catalog">Каталог</span>
                         </a>
+                        <a href="#contacts" class="nav-link" id="scroll-to-contacts" data-lang="nav_contacts">Зв'язок з нами</a>
                     </nav>
+                </div>
+                <div class="col-auto">
+                    <select id="lang-select" class="form-select form-select-sm bg-dark text-white border-secondary">
+                        <option value="uk" selected>UA</option>
+                        <option value="en">EN</option>
+                        <option value="ru">RU</option>
+                    </select>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="py-5">
-        <div class="container text-center">
-            <h2 class="mb-4">Наш Каталог</h2>
-            <div class="swiper swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="pics/car1.jpg" alt="car 1" class="img-fluid slider-img">
+    <main class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4" data-lang="catalog_header">Наш Каталог</h2>
+
+            <div class="card p-4 mb-4 border-0 shadow-sm">
+                <div class="row g-3">
+                    <div class="col-md-3 col-sm-6">
+                        <label class="form-label" data-lang="filter_price">Ціна</label>
+                        <select id="filter-price" class="form-select">
+                            <option value="all" data-lang="opt_all">Всі ціни</option>
+                            <option value="0-30000">до $30,000</option>
+                            <option value="30000-100000">$30,000 - $100,000</option>
+                            <option value="100000+">Понад $100,000</option>
+                        </select>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="pics/car2.jpg" alt="car 2" class="img-fluid slider-img">
+
+                    <div class="col-md-3 col-sm-6">
+                        <label class="form-label" data-lang="filter_brand">Марка</label>
+                        <select id="filter-brand" class="form-select">
+                            <option value="all" data-lang="opt_all">Всі марки</option>
+                            <option value="Porsche">Porsche</option>
+                            <option value="Ferrari">Ferrari</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Lamborghini">Lamborghini</option>
+                        </select>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="pics/car3.jpg" alt="car 3" class="img-fluid slider-img">
+
+                    <div class="col-md-3 col-sm-6">
+                        <label class="form-label" data-lang="filter_body">Кузов</label>
+                        <select id="filter-body" class="form-select">
+                            <option value="all" data-lang="opt_all">Всі кузови</option>
+                            <option value="Coupe" data-lang="body_coupe">Купе</option>
+                            <option value="Sedan" data-lang="body_sedan">Седан</option>
+                            <option value="SUV" data-lang="body_suv">Позашляховик</option>
+                        </select>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="pics/car4.jpg" alt="car 4" class="img-fluid slider-img">
+
+                    <div class="col-md-3 col-sm-6">
+                        <label class="form-label" data-lang="filter_country">Країна</label>
+                        <select id="filter-country" class="form-select">
+                            <option value="all" data-lang="opt_all">Всі країни</option>
+                            <option value="Німеччина" data-lang="country_germany">Німеччина</option>
+                            <option value="Італія" data-lang="country_italy">Італія</option>
+                            <option value="Японія" data-lang="country_japan">Японія</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <label class="form-label" data-lang="filter_mileage">Пробіг</label>
+                        <select id="filter-mileage" class="form-select">
+                            <option value="all" data-lang="opt_all">Будь-який пробіг</option>
+                            <option value="0" data-lang="opt_new_car">Без пробігу (Нова)</option>
+                            <option value="1-50000">до 50,000 км</option>
+                            <option value="50000+">Понад 50,000 км</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <label class="form-label" data-lang="filter_class">Клас авто</label>
+                        <select id="filter-class" class="form-select">
+                            <option value="all" data-lang="opt_all">Всі класи</option>
+                            <option value="sport" data-lang="type_sport">Спорткари</option>
+                            <option value="super" data-lang="type_super">Суперкари</option>
+                            <option value="hyper" data-lang="type_hyper">Гіперкари</option>
+                            <option value="suv" data-lang="type_suv">Позашляховики (SUV)</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <label class="form-label" data-lang="filter_sort">Сортувати за</label>
+                        <select id="filter-sort" class="form-select">
+                            <option value="price-asc" data-lang="sort_price_asc">Ціна: від дешевих</option>
+                            <option value="price-desc" data-lang="sort_price_desc">Ціна: від дорогих</option>
+                            <option value="year-desc" data-lang="sort_year_desc">Новіші за роком</option>
+                            <option value="mileage-asc" data-lang="sort_mileage_asc">Найменший пробіг</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <label class="form-label">
+                            <span data-lang="filter_year">Рік випуску</span>: 
+                            <span id="year-min-val">1950</span> - <span id="year-max-val">2026</span>
+                        </label>
+                        <div class="d-flex gap-2 align-items-center">
+                            <input type="range" id="filter-year-min" class="form-range" min="1950" max="2026" value="1950">
+                            <input type="range" id="filter-year-max" class="form-range" min="1950" max="2026" value="2026">
+                        </div>
+                    </div>
+
+            <div id="products-count" class="text-muted mb-3 fs-6"></div>
+
+            <div class="row g-4" id="cars-grid"></div>
+
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center" id="pagination-container"></ul>
+            </nav>
+        </div>
+    </main>
+
+    <footer id="contacts" class="footer pt-5 pb-4 text-white">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <h5 class="text-uppercase mb-3 font-weight-bold text-info" data-lang="footer_about_title">Про нас</h5>
+                    <p data-lang="footer_about_text">Ми пропонуємо найкращі автомобілі для ваших незабутніх поїздок. Надійність та якість — наш пріоритет.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-uppercase mb-3 font-weight-bold text-info" data-lang="footer_contacts_title">Контакти</h5>
+                    <p><span data-lang="footer_address">м. Київ, вул. Автомобільна, 1</span></p>
+                    <p>info@sidewayscars.com</p>
+                    <p>+380 99 999 99 99</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-uppercase mb-3 font-weight-bold text-info" data-lang="footer_social_title">Соцмережі</h5>
+                    <div class="d-flex gap-3 social-links">
+                        <a href="#" class="text-white">Telegram</a>
+                        <a href="#" class="text-white">Instagram</a>
+                        <a href="#" class="text-white">Facebook</a>
                     </div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+            </div>
+            <hr class="mb-4 mt-4 border-secondary">
+            <div class="text-center">
+                <p class="mb-0">© 2026 Sideways Cars. <span data-lang="footer_rights">Всі права захищені.</span></p>
             </div>
         </div>
-    </section>
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            new Swiper('.swiper-container', {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 0,
-                pagination: { el: '.swiper-pagination', clickable: true },
-                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
-            });
-        });
-    </script>
+    <script src="./CarsCatalog.js"></script>
 </body>
 </html>

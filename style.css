@@ -4,14 +4,14 @@ body {
 }
 
 .header {
-    background: #2c3e50;
+    background: #000000;
 }
 
 .header-top-logo {
-    height: 40px;
-    background: white;
+    height: 60px;
+    background: rgb(255, 255, 255);
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .nav-link {
@@ -32,8 +32,7 @@ body {
 }
 
 .nav-link img {
-    width: 18px;
-    height: 18px;
+    height: 20px;
     filter: invert(1);
 }
 
@@ -75,4 +74,30 @@ body {
     .swiper-container {
         min-height: 250px;
     }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.car-type-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.car-type-card:hover {
+    transform: translateY(-5px);
+}
+
+.car-item-card {
+    transition: transform 0.3s ease;
+}
+
+.car-item-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12) !important;
+}
+
+.footer {
+    background-color: #0b0b0b;
+    border-top: 3px solid #00bfff;
 }
