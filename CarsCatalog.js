@@ -42,11 +42,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const classParam = new URLSearchParams(window.location.search).get('class');
-    if (classParam) selects.class.value = classParam;
+    if (classParam && selects.class) selects.class.value = classParam;
 
     function createCarCard(car) {
         const lang = localStorage.getItem('selectedLang') || 'uk';
         const labels = translations[lang];
+        
+        let bodyTranslation = car.body;
+        if (car.body === 'Coupe' && labels['body_coupe']) bodyTranslation = labels['body_coupe'];
+        if (car.body === 'Sedan' && labels['body_sedan']) bodyTranslation = labels['body_sedan'];
+        if (car.body === 'SUV' && labels['body_suv']) bodyTranslation = labels['body_suv'];
+
+        let countryTranslation = car.country;
+        if (car.country === 'Німеччина' && labels['country_germany']) countryTranslation = labels['country_germany'];
+        if (car.country === 'Італія' && labels['country_italy']) countryTranslation = labels['country_italy'];
+        if (car.country === 'Японія' && labels['country_japan']) countryTranslation = labels['country_japan'];
+        if (car.country === 'Франція' && labels['country_france']) countryTranslation = labels['country_france'];
+
         const mileageText = car.mileage === 0 ? labels['opt_new_car'] : `${car.mileage.toLocaleString()} ${labels['text_km']}`;
 
         const col = document.createElement('div');
@@ -55,9 +67,9 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="card h-100 shadow-sm border-0 overflow-hidden car-item-card">
                 <img src="${car.img}" alt="${car.brand}" class="card-img-top" style="height: 200px; object-fit: cover;">
                 <div class="card-body">
-                    <span class="badge bg-info text-dark mb-2">${car.brand} (${car.country})</span>
+                    <span class="badge bg-info text-dark mb-2">${car.brand} (${countryTranslation})</span>
                     <h5 class="card-title font-weight-bold">${car.brand} ${car.model}</h5>
-                    <p class="card-text text-muted mb-1">${car.year} ${labels['text_year']} | ${car.body}</p>
+                    <p class="card-text text-muted mb-1">${car.year} ${labels['text_year']} | ${bodyTranslation}</p>
                     <p class="card-text text-muted small">${labels['filter_mileage']}: ${mileageText}</p>
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <span class="fs-5 fw-bold text-primary">$${car.price.toLocaleString('en-US')}</span>
@@ -102,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selects.sort.value === 'mileage-asc') result.sort((a, b) => a.mileage - b.mileage);
 
         filteredCars = result;
-        currentPage = 1;
         displayCurrentPage();
         updatePagination();
     }
@@ -137,7 +148,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    Object.values(selects).forEach(select => select.addEventListener('change', filterAndSortCars));
+    Object.values(selects).forEach(select => {
+        if(select) select.addEventListener('change', () => { currentPage = 1; filterAndSortCars(); });
+    });
 
     function changeLanguage(lang) {
         document.querySelectorAll('[data-lang]').forEach(el => {
@@ -148,16 +161,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         localStorage.setItem('selectedLang', lang);
-        langSelect.value = lang;
+        if (langSelect) langSelect.value = lang;
         filterAndSortCars();
     }
 
-    langSelect.addEventListener('change', (e) => changeLanguage(e.target.value));
+    if (langSelect) {
+        langSelect.addEventListener('change', (e) => changeLanguage(e.target.value));
+    }
     
-    document.getElementById('scroll-to-contacts').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-    });
+    const contactsBtn = document.getElementById('scroll-to-contacts');
+    if (contactsBtn) {
+        contactsBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        });
+    }
 
     yearMinVal.textContent = yearMinInput.value;
     yearMaxVal.textContent = yearMaxInput.value;

@@ -45,28 +45,32 @@
                     <div class="col-md-3 col-sm-6">
                         <label class="form-label" data-lang="filter_price">Ціна</label>
                         <select id="filter-price" class="form-select">
-                            <option value="all" data-lang="opt_all">Всі ціни</option>
-                            <option value="0-30000">до $30,000</option>
-                            <option value="30000-100000">$30,000 - $100,000</option>
-                            <option value="100000+">Понад $100,000</option>
+                            <option value="all" data-lang="opt_all_prices">Всі ціни</option>
+                            <option value="0-30000" data-lang="price_up_to_30">до $30,000</option>
+                            <option value="30000-100000" data-lang="price_30_100">$30,000 - $100,000</option>
+                            <option value="100000+" data-lang="price_over_100">Понад $100,000</option>
                         </select>
                     </div>
 
                     <div class="col-md-3 col-sm-6">
                         <label class="form-label" data-lang="filter_brand">Марка</label>
                         <select id="filter-brand" class="form-select">
-                            <option value="all" data-lang="opt_all">Всі марки</option>
+                            <option value="all" data-lang="opt_all_brands">Всі марки</option>
                             <option value="Porsche">Porsche</option>
                             <option value="Ferrari">Ferrari</option>
                             <option value="Toyota">Toyota</option>
                             <option value="Lamborghini">Lamborghini</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Nissan">Nissan</option>
+                            <option value="Mitsubishi">Mitsubishi</option>
+                            <option value="Bugatti">Bugatti</option>
                         </select>
                     </div>
 
                     <div class="col-md-3 col-sm-6">
                         <label class="form-label" data-lang="filter_body">Кузов</label>
                         <select id="filter-body" class="form-select">
-                            <option value="all" data-lang="opt_all">Всі кузови</option>
+                            <option value="all" data-lang="opt_all_bodies">Всі кузови</option>
                             <option value="Coupe" data-lang="body_coupe">Купе</option>
                             <option value="Sedan" data-lang="body_sedan">Седан</option>
                             <option value="SUV" data-lang="body_suv">Позашляховик</option>
@@ -76,27 +80,28 @@
                     <div class="col-md-3 col-sm-6">
                         <label class="form-label" data-lang="filter_country">Країна</label>
                         <select id="filter-country" class="form-select">
-                            <option value="all" data-lang="opt_all">Всі країни</option>
+                            <option value="all" data-lang="opt_all_countries">Всі країни</option>
                             <option value="Німеччина" data-lang="country_germany">Німеччина</option>
                             <option value="Італія" data-lang="country_italy">Італія</option>
                             <option value="Японія" data-lang="country_japan">Японія</option>
+                            <option value="Франція" data-lang="country_france">Франція</option>
                         </select>
                     </div>
 
                     <div class="col-md-3 col-sm-6">
                         <label class="form-label" data-lang="filter_mileage">Пробіг</label>
                         <select id="filter-mileage" class="form-select">
-                            <option value="all" data-lang="opt_all">Будь-який пробіг</option>
+                            <option value="all" data-lang="opt_all_mileages">Будь-який пробіг</option>
                             <option value="0" data-lang="opt_new_car">Без пробігу (Нова)</option>
-                            <option value="1-50000">до 50,000 км</option>
-                            <option value="50000+">Понад 50,000 км</option>
+                            <option value="1-50000" data-lang="mileage_up_to_50">до 50,000 км</option>
+                            <option value="50000+" data-lang="mileage_over_50">Понад 50,000 км</option>
                         </select>
                     </div>
 
                     <div class="col-md-3 col-sm-6">
                         <label class="form-label" data-lang="filter_class">Клас авто</label>
                         <select id="filter-class" class="form-select">
-                            <option value="all" data-lang="opt_all">Всі класи</option>
+                            <option value="all" data-lang="opt_all_classes">Всі класи</option>
                             <option value="sport" data-lang="type_sport">Спорткари</option>
                             <option value="super" data-lang="type_super">Суперкари</option>
                             <option value="hyper" data-lang="type_hyper">Гіперкари</option>
@@ -124,6 +129,8 @@
                             <input type="range" id="filter-year-max" class="form-range" min="1950" max="2026" value="2026">
                         </div>
                     </div>
+                </div>
+            </div>
 
             <div id="products-count" class="text-muted mb-3 fs-6"></div>
 
@@ -164,6 +171,7 @@
         </div>
     </footer>
 
+    <script src="./data.js"></script>
     <script src="./CarsCatalog.js"></script>
 </body>
 </html>
